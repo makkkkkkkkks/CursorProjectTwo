@@ -26,4 +26,12 @@ public class Review {
 
     @Column(name = "review_likes_count")
     private int reviewLikesCount;
+
+    @ManyToOne
+    @JoinColumn(name = "reviewer")
+    private User reviewer;
+
+    @ManyToOne
+    @JoinColumn(name = "movie")
+    private Movie movie;
 }
