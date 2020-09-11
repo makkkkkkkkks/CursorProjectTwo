@@ -38,3 +38,7 @@ API requirements:
 /stats/category GET - get movies list by category
 
 API paths it’s just for example. Feel free to use your own.
+
+
+
+

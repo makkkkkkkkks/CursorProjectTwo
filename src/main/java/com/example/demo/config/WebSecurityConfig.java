@@ -7,21 +7,20 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    /*@Autowired
-    private UserService userService;
-
     @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder(10);
+    protected BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(12);
     }
-*/
+
     private final JwtTokenProvider jwtTokenProvider;
+
     @Autowired
-    public WebSecurityConfig (JwtTokenProvider jwtTokenProvider) {
+    public WebSecurityConfig(JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
@@ -35,10 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
 
-                .httpBasic()
-                .and()
+                .csrf()
+                .disable()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/registration", "/logout").permitAll();
+                .antMatchers("/", "/home", "/registration", "/logout", "/login").permitAll();
         // .anyRequest().authenticated();
 
     }

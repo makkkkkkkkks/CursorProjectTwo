@@ -12,6 +12,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User saveAndFlush(User user);
 
+  //  boolean userIsExisting(User user);
+
 }
 
 

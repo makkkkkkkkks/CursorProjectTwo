@@ -22,7 +22,6 @@ public class UserServiceImpl implements UserService {
         return userRepo.getUserById(id);
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return userRepo.getByUserName(s);
@@ -36,5 +35,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         userRepo.saveAndFlush(user);
+    }
+
+    @Override
+    public boolean userIsExisting(String name) {
+       // User user =  userRepo.userIsExisting(userRepo.getByUserName(name));
+
+        return false;
     }
 }
