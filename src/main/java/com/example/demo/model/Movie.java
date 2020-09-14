@@ -19,7 +19,6 @@ public class Movie {
     private Category category;
     private String director;
     private String shortDescription;
-    private int likes;
     private float rate;
 
     public Movie(String title, Category category, String director, String shortDescription, int likes, float rate) {
@@ -27,7 +26,6 @@ public class Movie {
         this.category = category;
         this.director = director;
         this.shortDescription = shortDescription;
-        this.likes = likes;
         this.rate = rate;
     }
 }
