@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.enums.Category;
 import com.example.demo.model.Movie;
 import com.example.demo.repository.MovieRepository;
 import com.example.demo.service.MovieService;
@@ -22,7 +23,22 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Optional<Movie> findMovieById(Long id) {
-        return movieRepository.getMovieById(id);
+        return movieRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Movie> findMovieByTitle(String title) {
+        return movieRepository.findMovieByTitle(title);
+    }
+
+    @Override
+    public Optional<Movie> findMovieByCategory(Category category) {
+        return movieRepository.findMovieByCategory(category);
+    }
+
+    @Override
+    public Optional<Movie> findMovieByDirector(String director) {
+        return movieRepository.findMovieByDirector(director);
     }
 
     @Override
@@ -31,8 +47,8 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public void addMovie(Movie movie) {
-        movieRepository.save(movie);
+    public Movie addMovie(Movie movie) {
+        return movieRepository.save(movie);
     }
 
     @Override
@@ -41,7 +57,14 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public void updateMovie(Long id) {
-
+    public Movie updateMovie(Long id, String title, Category category, String directory, String shortDescription) {
+        return movieRepository.findById(id)
+                .map(movie -> {
+                    movie.setTitle(title);
+                    movie.setCategory(category);
+                    movie.setDirector(directory);
+                    movie.setShortDescription(shortDescription);
+                    return movieRepository.save(movie);
+                }).orElseThrow();
     }
 }
