@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.enums.Category;
 import com.example.demo.model.Movie;
 
 import java.util.List;
@@ -10,11 +11,17 @@ public interface MovieService {
 
     public Optional<Movie> findMovieById(Long id);
 
+    public Optional<Movie> findMovieByTitle(String title);
+
+    public Optional<Movie> findMovieByCategory(Category category);
+
+    public Optional<Movie> findMovieByDirector(String director);
+
     public Movie addRateMovie(Long id);
 
-    public void addMovie(Movie movie);
+    public Movie addMovie(Movie movie);
 
     public void deleteMovie(Long id);
 
-    public void updateMovie(Long id);
+    public Movie updateMovie(Long id, String title, Category category, String directory, String shortDescription);
 }
